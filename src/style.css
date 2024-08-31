@@ -1,0 +1,79 @@
+/*weatherforcast*/
+/*----------------------------------------reset-------------------------------------------------------------*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/*--------------------------------colour scheme  1 lighter to 4 darker ------------------------------------*/
+/* using variables e.g.
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+}
+body { background-color: var(--blue); }
+*/
+
+:root {
+  --col_1  : #bbe4e9;   /* lightest*/
+  --col_2  : #79c2d0;   /* lighter */
+  --col_3  : #53a8b6;   /* darker  */
+  --col_4  : #5585b5;   /* darkest */
+}
+
+.col-1 {
+  background-color: var(--col_1);
+}
+
+.col-2 {
+  background-color: var(--col_2);
+}
+
+.col-3 {
+  background-color: var(--col_3);
+}
+
+.col-4 {
+  background-color: var(--col_4);;
+}
+
+/*-------------------------text ---------------------------------------------------------------*/
+/*input cursor*/
+.cursor {
+  background-color: rgb(15 23 42);
+  width: 0.25rem;
+  height: 2rem;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+      background-color: transparent;
+  }
+  50% {
+      background-color: rgb(15 23 42);
+  }
+}
+
+/*----text-----*/
+
+h1 {
+  font-size: 2rem;
+  align-content: center;
+}
+
+/*------------------------------------container----------------------------------------------*/
+
+.container {
+height:100vh;
+width: 100vw;
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr 10fr 1fr;
+color: blue;
+background-color: var(--col_2);
+}

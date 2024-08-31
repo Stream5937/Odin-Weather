@@ -1,0 +1,7 @@
+Giphy.com
+Weather images: 
+Rain:
+https://media2.giphy.com/media/VeHDDworb3JxdyMqHa/giphy.gif?cid=9dc162b0i7c8nzf2c3cqqgeotk4qnais8rkyhgr8v5cwwk1e&ep=v1_gifs_translate&rid=giphy.gif&ct=g
+
+sunshine:
+https://media0.giphy.com/media/qw9ffzu38Dt6M/giphy.gif?cid=9dc162b0e3nxjiolsv84ztn2cjmgnytg8y9juub4axoqge5d&ep=v1_gifs_translate&rid=giphy.gif&ct=g
