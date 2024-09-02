@@ -7,6 +7,9 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     box-sizing: border-box;
+   /* display:grid;   //causes display issue!!
+   /* justify-content: center;
+    align-items: center; */
 }
 
 /*--------------------------------colour scheme  1 lighter to 4 darker ------------------------------------*/
@@ -23,8 +26,12 @@ body { background-color: var(--blue); }
   --col_2  : #79c2d0;   /* lighter */
   --col_3  : #53a8b6;   /* darker  */
   --col_4  : #5585b5;   /* darkest */
+  --col_td : #000088;   /* text darkest  */
+  --col_tm : #79c2d0;   /* text mid colour */
+  --col_tl : #ffffff;   /* text lightest */
 }
 
+/*
 .col-1 {
   background-color: var(--col_1);
 }
@@ -40,7 +47,7 @@ body { background-color: var(--blue); }
 .col-4 {
   background-color: var(--col_4);;
 }
-
+*/
 /*-------------------------text ---------------------------------------------------------------*/
 /*input cursor*/
 .cursor {
@@ -65,15 +72,56 @@ h1 {
   font-size: 2rem;
   align-content: center;
 }
+h2 {
+  font-size: 1.5rem;
+  align-content: center;
+}
 
 /*------------------------------------container----------------------------------------------*/
 
 .container {
-height:100vh;
-width: 100vw;
-display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: 1fr 10fr 1fr;
-color: blue;
-background-color: var(--col_2);
+ /* display:grid;
+  justify-content: center;
+  align-items: center; */
+  height:100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 10fr 1fr;
+  color: var(--col_td);
+  background-color: var(--col_2);
+}
+
+.header-zone {
+  display:grid;
+  grid-template-columns: 2fr 3fr;
+  justify-content: center;
+  align-items: center;
+  color: var(--col_td);
+  background-color: var(--col_3);
+  grid-area: 1/2/2/3;
+}
+
+input {
+  width: 90%;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.data-zone {
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  color: blue;
+  background-color: var(--col_2);
+  grid-area: 2/2/3/3;
+}
+
+.footer-zone {
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  color: blue;
+  background-color: var(--col_3);
+  grid-area: 3/2/4/3;
 }
