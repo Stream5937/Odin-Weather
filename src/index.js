@@ -1,7 +1,17 @@
 import "./style.css";
+import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
+//an array of dataItem names to correspond with the dataBlock display locations
+const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
+
+console.log('at ./index.js');
+console.log('locale' + dataBlocks[0]);
 console.log('at ./index.js');
 let lastQuery = 'Nailsea';   // a default value
 let siteDataObj= {};
+
+listeners.forEach((item) => {
+  setZoneListener(item);
+});
 
 const search = document.getElementById("search");
 let debounceTimer;
@@ -15,7 +25,7 @@ search.addEventListener(
   "input",
   (event) => {
     const query = event.target.value;
-    debounce(() => handleSearchPosts(query), 500);
+    debounce(() => handleSearchPosts(query), 800);
   },
   false
 );
@@ -25,7 +35,6 @@ function handleSearchPosts(query){
     lastQuery = query;
     getData(query);
 }
-
 
 /*  using visual crossing account for weather data
       public account key:
@@ -53,7 +62,6 @@ function getData (query) {
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?key=SHSBBCG24LZCJNG5DWNL5ZFP2`, 
       {mode: 'cors'}
     )
-      
       .then(function(response) {
         dateFinish = new Date();    //for end time of fetch operation
         return response.json();
@@ -74,46 +82,45 @@ function getData (query) {
           t_finish= getTime();  //record end time of fetch operation -fail
         } 
      })
-     /**/ 
      .then(function(response){
-      /*
-          console.log('------------');
-          console.log(response);
-          console.log('------------');
-          dataResult = response;
-          console.log('dataResult: ' + dataResult);
-          setDisplayData(dataResult);
-      */
-          setDisplayData(response);
+     
+          setDisplayDataObj(response);
           t_taken = t_finish - t_start;   //duration of fetch operation in milliseconds
           console.log(`fetch data took ${t_taken} milliseconds`);
      })
-         /* */
      .catch(e=> {
          console.log(e);
      });
 }
 
-function setDisplayData (data) {
-
-  /* test 
-  const birthday = new Date(1725346200);
-  console.log(birthday);
-  const date1 = birthday.getDate();
-  console.log(date1);
-  // Expected output: 19
-  /* end of test */
-
-
+function setDisplayDataObj (data) {
 
   console.log(`data : ${data}`);
   //location
   siteDataObj.location= data.resolvedAddress;
+  console.log(siteDataObj.location);
   //date
   const dateNow = new Date();
   console.log(dateNow);
+  //temperature
+  siteDataObj.temperature = data.currentConditions.temp;
+  //humidity
+  siteDataObj.humidity = data.currentConditions.humidity;
+  //icon
+  siteDataObj.icon = data.currentConditions.icon;
+  //precipitation
+  siteDataObj.precipitation=data.currentConditions.precip;
+  //wind
+  siteDataObj.wind=data.currentConditions.windspeed;
   //current conditions
-  siteDataObj.CurrentConditions = data.currentConditions.conditions;
+  siteDataObj.currentConditions = data.currentConditions.conditions;
 
   console.log(siteDataObj);
+  let value;
+
+  dataBlocks.forEach((item, index) => {
+    value = dataNames[index];
+    console.log(value);
+    item.textContent=siteDataObj[value];
+  });
 }
