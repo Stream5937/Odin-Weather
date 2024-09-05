@@ -23,8 +23,10 @@ const wind = $('.wind');
 
 //an array of button listeners
 export const listeners = [deg,day1,day2,day3,day4,day5,day6,day7];
-//an array of data display locations
+//an array of main stats data display locations
 export const dataBlocks = [location, temperature, humidity, icon, precipitation, wind];
+//an array of minor stats data display locations
+export const dataMinorBlocks = [];
 
 let zone;
 

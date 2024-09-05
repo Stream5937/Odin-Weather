@@ -102,6 +102,7 @@ function setDisplayDataObj (data) {
   //date
   const dateNow = new Date();
   console.log(dateNow);
+  //Main-stats
   //temperature
   siteDataObj.temperature = data.currentConditions.temp;
   //humidity
@@ -115,6 +116,21 @@ function setDisplayDataObj (data) {
   //current conditions
   siteDataObj.currentConditions = data.currentConditions.conditions;
 
+  //minor-stats
+  siteDataObj.cloudCover = data.currentConditions.cloudcover;
+  siteDataObj.dewPoint = data.currentConditions.dew;
+  siteDataObj.feelsLike = data.currentConditions.feelslike;
+  siteDataObj.precipitationProbability = data.currentConditions.precipprob;
+  siteDataObj.precipitationType = data.currentConditions.preciptype;
+  siteDataObj.airPressure = data.currentConditions.pressure;
+  siteDataObj.sunrise = data.currentConditions.sunrise;
+  siteDataObj.sunset = data.currentConditions.sunset;
+  siteDataObj.tempMin  = data.currentConditions.tempmin;
+  siteDataObj.tempMax  = data.currentConditions.tempmax;
+  siteDataObj.direction = data.currentConditions.winddir;
+  siteDataObj.gust  = data.currentConditions.windgust;
+  siteDataObj.uv  = data.currentConditions.uvindex;
+  
   console.log(siteDataObj);
   let value;
 
