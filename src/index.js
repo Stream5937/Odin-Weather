@@ -1,6 +1,6 @@
 import "./style.css";
 import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
-import {listItems, conditions} from './domFunctions.js';
+import {listItems, conditions, actionPopUp, popupData} from './domFunctions.js';
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
@@ -22,10 +22,11 @@ const prefix_main = [
   "",
   'Current conditions: '
 ]
+const days =[{},{},{},{},{},{},{}];
 
-console.log('at ./index.js');
-console.log('locale' + dataBlocks[0]);
-console.log('at ./index.js');
+//console.log('at ./index.js');
+//console.log('locale' + dataBlocks[0]);
+//console.log('at ./index.js');
 let lastQuery = 'Nailsea';   // a default value
 let siteDataObj= {};
 let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
@@ -52,7 +53,7 @@ search.addEventListener(
 );
 
 function handleSearchPosts(query){
-    console.log(`${query}`);
+   // console.log(`${query}`);
     lastQuery = query;
     getData(query);
 }
@@ -73,7 +74,7 @@ function getData (query) {
     lastQuery = query;
     let noData = false;
     let dataResult = null;
-    console.log(`lastQuery: ${lastQuery}`);
+   // console.log(`lastQuery: ${lastQuery}`);
     const dateStart = new Date();         //to get start time
     const t_start = dateStart.getTime();  //record start of fetch action
     let dateFinish = null;      //to get finish time
@@ -93,8 +94,8 @@ function getData (query) {
      .then(function(response){
          if(response.data !== {}){
           console.log('body data present');
-          console.log(response);
-          console.log(response.currentConditions);
+        //  console.log(response);
+        //  console.log(response.currentConditions);
 
           t_finish = dateFinish.getTime();  //record end time of fetch operation -success
           return(response);
@@ -107,8 +108,12 @@ function getData (query) {
      })
      .then(function(response){
           t_taken = t_finish - t_start;   //duration of fetch operation in milliseconds
-          console.log(`fetch data took ${t_taken} milliseconds`);
+         // console.log(`fetch data took ${t_taken} milliseconds`);
           setDisplayDataObj(response);
+          return(response);
+     })
+     .then(function(response){
+          setDaysDataArray(response);
      })
      .catch(e=> {
          console.log(e);
@@ -120,10 +125,10 @@ function setDisplayDataObj (data) {
   console.log(`data : ${data}`);
   //location
   siteDataObj.location= data.resolvedAddress;
-  console.log(siteDataObj.location);
+  //console.log(siteDataObj.location);
   //date
   const dateNow = new Date();
-  console.log(dateNow);
+ // console.log(dateNow);
   //Main-stats
   //temperature
   siteDataObj.temperature = data.currentConditions.temp;
@@ -154,7 +159,7 @@ function setDisplayDataObj (data) {
   siteDataObj.gust  = data.currentConditions.windgust;
   siteDataObj.uv  = data.currentConditions.uvindex;
   
-  console.log(siteDataObj);
+ // console.log(siteDataObj);
   let value;
 
   dataBlocks.forEach((item, index) => {
@@ -172,8 +177,8 @@ function setDisplayDataObj (data) {
   //where imported 
   //listItems=[[feel, press], [dew, cloud], [rise, set, uv], [precip, prob], [dir, gust]];
 
-  console.log(listItems[0][0]);
-  console.log(listItems[0][1]);
+  //console.log(listItems[0][0]);
+  //console.log(listItems[0][1]);
 
   listItems[0][0].textContent = siteDataObj.feelsLike;
   listItems[0][1].textContent = siteDataObj.airPressure;
@@ -188,3 +193,22 @@ function setDisplayDataObj (data) {
   listItems[4][1].textContent = siteDataObj.gust;
 
 }
+
+
+function setDaysDataArray(data){
+ // console.log(`data: ${data}`);
+  const nextDays = data.days;
+  //console.log(`nextDays  ${nextDays}`);
+  nextDays.forEach((item, index, array) => {
+    console.log(index);
+    if(index < 7){
+      //console.log(item);
+      days[index] = item;
+      console.log(index);
+      console.log(days[index]);
+      //setDaysDataObj[index]];
+    }
+  });
+}
+
+
