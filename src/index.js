@@ -1,7 +1,18 @@
 import "./style.css";
 import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
+import {listItems} from './domFunctions.js';
+
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
+const prefix_main = [
+  "Forecast for: ",
+  "Temperature ",
+  "humidity ", 
+  "icon ",
+  "precipitation ",
+  "wind ",
+  'Current conditions: '
+]
 
 console.log('at ./index.js');
 console.log('locale' + dataBlocks[0]);
@@ -122,6 +133,7 @@ function setDisplayDataObj (data) {
   siteDataObj.feelsLike = data.currentConditions.feelslike;
   siteDataObj.precipitationProbability = data.currentConditions.precipprob;
   siteDataObj.precipitationType = data.currentConditions.preciptype;
+  if(siteDataObj.precipitationType === null){siteDataObj.precipitationType='none';}
   siteDataObj.airPressure = data.currentConditions.pressure;
   siteDataObj.sunrise = data.currentConditions.sunrise;
   siteDataObj.sunset = data.currentConditions.sunset;
@@ -137,6 +149,25 @@ function setDisplayDataObj (data) {
   dataBlocks.forEach((item, index) => {
     value = dataNames[index];
     console.log(value);
-    item.textContent=siteDataObj[value];
+    item.textContent= prefix_main[index] + siteDataObj[value];
   });
+
+  //where imported 
+  //listItems=[[feel, press], [dew, cloud], [rise, set, uv], [precip, prob], [dir, gust]];
+
+  console.log(listItems[0][0]);
+  console.log(listItems[0][1]);
+
+  listItems[0][0].textContent = siteDataObj.feelsLike;
+  listItems[0][1].textContent = siteDataObj.airPressure;
+  listItems[1][0].textContent = siteDataObj.dewPoint;
+  listItems[1][1].textContent = siteDataObj.cloudCover;
+  listItems[2][0].textContent = siteDataObj.sunrise;
+  listItems[2][1].textContent = siteDataObj.sunset;
+  listItems[2][2].textContent = siteDataObj.uv;
+  listItems[3][0].textContent = siteDataObj.precipitationType;
+  listItems[3][1].textContent = siteDataObj.precipitationProbability;
+  listItems[4][0].textContent = siteDataObj.direction;
+  listItems[4][1].textContent = siteDataObj.gust;
+
 }

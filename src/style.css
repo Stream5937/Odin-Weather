@@ -248,19 +248,26 @@ ul {
 
 ul #wind,
 ul #precipitation,
-ul #icon, 
 ul #humidity,
 ul #temperature {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: space-evenly; 
+  align-items: start;
+}
+
+ul #icon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  justify-content: center; 
-  align-items:start;
+  justify-content: space-evenly; 
+  align-items: start;
 }
 
 li {
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  /*grid-template-columns: 1fr 1fr;*/
   align-items: center;
   height: 90%;
   width: 90%;
@@ -277,24 +284,53 @@ ul li#feel{
   margin : 3%;
 }
 
+ul li#dir2,
+ul li#precip2,
+ul li#rise2,
+ul li#dew2,
+ul li#feel2 {
+  grid-area: 1/2/2/3;
+  background-color: var(--col_3);
+  margin : 3%;
+}
+
+ul li#gust2,
+ul li#prob2,
+ul li#set2,
+ul li#cloud2,
+ul li#press2 {
+  grid-area: 2/2/3/3;
+  background-color: var(--col_3);
+  margin : 3%;
+}
+
+ul li#uv2 {
+  grid-area: 3/2/4/3;
+  background-color: var(--col_3);
+  margin : 3%;
+}
+
+ul li#press,
 ul li#gust,
 ul li#prob,
 ul li#set,
-ul li#cloud,
-ul li#max{
+ul li#cloud {
   grid-area: 2/1/3/2;
   background-color: var(--col_2);
   margin : 3%;
 }
 
-ul li#uv,
-ul li#press,
-ul li#min{
+
+ul li#uv {
   grid-area: 3/1/4/2;
   background-color: var(--col_3);
   margin : 3%;
 }
 
+/*ul li#feel,
+ul li#press, 
+ul li#dew,
+ul li#cloud,
 ul li#dir,
 ul li#gust,
 ul li#prob,
@@ -302,8 +338,9 @@ ul li#precip {
   height: 90%;
   width: 90%;
   margin: 3%;
-}
+}  */
 
+/* ------------------------------------varied display icon / data zone -------------------------------*/
 .varies {
   display: grid;
   grid-area: 5/1/6/2;
