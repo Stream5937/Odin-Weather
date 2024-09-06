@@ -29,6 +29,7 @@ body { background-color: var(--blue); }
   --col_td : #000088;   /* text darkest  */
   --col_tm : #79c2d0;   /* text mid colour */
   --col_tl : #ffffff;   /* text lightest */
+  --col_icon: lightyellow; /* general icon related background */
 }
 
 /*
@@ -118,8 +119,12 @@ h2 span {
 }
 
 input {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--col_td);
   width: 90%;
   height: 2rem;
+  padding-left: 20px;;
   border-radius: 5px;
 }
 
@@ -146,13 +151,20 @@ input {
   grid-template-columns: 1fr;
 }
 
+/*----------------------------------------location zone--------------------------------------*/
 .locale {
   display:grid;
   grid-area: 1/1/2/2;
-  background-color: lightgrey;
+  align-content: center;
+  background-color: var(--col_icon);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--col_td);
   height: 100%;
+  padding-left: 10px;
 }
 
+/*----------------------------------------main stats zone--------------------------------------*/
 .main-stats {
   display:grid;
   grid-area: 2/1/3/2;
@@ -175,11 +187,12 @@ input {
   border-color: #000088;
   border-width: 2px;
   border-style: solid;
-  padding-left: 5%;
 }
+
 
 .humidity_minor,
 .humidity {
+  display:grid;
   grid-area: 1/2/2/3;
   height: 95%;
   width: 95%;
@@ -191,6 +204,7 @@ input {
 
 .icon_minor,
 .icon {
+  display:grid;
   grid-area: 1/3/2/4;
   height: 95%;
   width: 95%;
@@ -202,6 +216,7 @@ input {
 
 .precipitation_minor,
 .precipitation {
+  display:grid;
   grid-area: 1/4/2/5;
   height: 95%;
   width: 95%;
@@ -213,6 +228,7 @@ input {
 
 .wind_minor,
 .wind {
+  display:grid;
   grid-area: 1/5/2/6;
   height: 95%;
   width: 95%;
@@ -221,13 +237,52 @@ input {
   border-width: 2px;
   border-style: solid;
 }
-/*--------------*/
-.conditions {
-  grid-area: 3/1/4/2;
-  background-color: lightgrey;
-  height: 100%;
+
+
+.wind,
+.precipitation,
+.icon,
+.humidity,
+.temperature {
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 8fr;
+  font-weight: 600;
+  color: var(--col_td);
 }
 
+span.top {
+  display:grid;
+  grid-area: 1/1/2/2;
+  justify-content: center;
+  align-items: center;
+  /*background-color:chartreuse;*/
+  font-size: 1.2rem;
+}
+
+span.main {
+  display:grid;
+  grid-area: 2/1/3/2;
+  justify-content: center;
+  align-content: center;
+ /* background-color:antiquewhite;*/
+  font-size: 3rem;
+  
+}
+
+/*---------------------------------------local conditions zone----------------------------------------*/
+.conditions {
+  display: grid;
+  grid-area: 3/1/4/2;
+  align-items: center;
+  background-color: var(--col_icon);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--col_td);
+  height: 100%;
+  padding-left: 10px;
+}
+
+/*---------------------------------------minor stats zone ---------------------------------------------*/
 .minor-stats {
   display: grid;
   grid-area: 4/1/5/2;
@@ -267,7 +322,9 @@ ul #icon {
 
 li {
   display:grid;
-  /*grid-template-columns: 1fr 1fr;*/
+  font-size: 1.2rem;
+  color: var(--col_td);
+  font-weight: 600;
   align-items: center;
   height: 90%;
   width: 90%;
@@ -275,7 +332,7 @@ li {
 
 /*minor stats */
 ul li#dir,
-ul li#precip,
+ul li#precip, 
 ul li#rise,
 ul li#dew,
 ul li#feel{
@@ -289,6 +346,9 @@ ul li#precip2,
 ul li#rise2,
 ul li#dew2,
 ul li#feel2 {
+  display:grid;
+  justify-content: center;
+  align-items: center;
   grid-area: 1/2/2/3;
   background-color: var(--col_3);
   margin : 3%;
@@ -299,12 +359,18 @@ ul li#prob2,
 ul li#set2,
 ul li#cloud2,
 ul li#press2 {
+  display:grid;
+  justify-content: center;
+  align-items: center;
   grid-area: 2/2/3/3;
   background-color: var(--col_3);
   margin : 3%;
 }
 
 ul li#uv2 {
+  display:grid;
+  justify-content: center;
+  align-items: center;
   grid-area: 3/2/4/3;
   background-color: var(--col_3);
   margin : 3%;
@@ -312,7 +378,7 @@ ul li#uv2 {
 
 ul li#press,
 ul li#gust,
-ul li#prob,
+/*ul li#prob, */
 ul li#set,
 ul li#cloud {
   grid-area: 2/1/3/2;
@@ -320,6 +386,11 @@ ul li#cloud {
   margin : 3%;
 }
 
+ul li#prob {
+  display:grid;
+  justify-content: center;
+  align-items: center;
+}
 
 ul li#uv {
   grid-area: 3/1/4/2;

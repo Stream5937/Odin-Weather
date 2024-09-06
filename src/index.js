@@ -1,16 +1,25 @@
 import "./style.css";
 import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
-import {listItems} from './domFunctions.js';
+import {listItems, conditions} from './domFunctions.js';
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
-const prefix_main = [
+/*const prefix_main = [
   "Forecast for: ",
   "Temperature ",
   "humidity ", 
   "icon ",
   "precipitation ",
   "wind ",
+  'Current conditions: '
+] */
+const prefix_main = [
+  "Forecast for: ",
+  "",
+  "", 
+  "",
+  "",
+  "",
   'Current conditions: '
 ]
 
@@ -19,6 +28,7 @@ console.log('locale' + dataBlocks[0]);
 console.log('at ./index.js');
 let lastQuery = 'Nailsea';   // a default value
 let siteDataObj= {};
+let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
 
 listeners.forEach((item) => {
   setZoneListener(item);
@@ -68,7 +78,9 @@ function getData (query) {
     const t_start = dateStart.getTime();  //record start of fetch action
     let dateFinish = null;      //to get finish time
     let t_finish = null;        //record finish of fetch action
-    let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
+    //let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
+    //t_taken now global
+
     fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?key=SHSBBCG24LZCJNG5DWNL5ZFP2`, 
       {mode: 'cors'}
@@ -94,10 +106,9 @@ function getData (query) {
         } 
      })
      .then(function(response){
-     
-          setDisplayDataObj(response);
           t_taken = t_finish - t_start;   //duration of fetch operation in milliseconds
           console.log(`fetch data took ${t_taken} milliseconds`);
+          setDisplayDataObj(response);
      })
      .catch(e=> {
          console.log(e);
@@ -149,8 +160,14 @@ function setDisplayDataObj (data) {
   dataBlocks.forEach((item, index) => {
     value = dataNames[index];
     console.log(value);
-    item.textContent= prefix_main[index] + siteDataObj[value];
+    if(index === 0){
+      item.textContent = prefix_main[index] + siteDataObj[value] + ` (in ${t_taken} ms)`;} 
+    else {
+      item.textContent= prefix_main[index] + siteDataObj[value];
+    }
   });
+
+  conditions.textContent = 'Current conditions: ' + siteDataObj.currentConditions;
 
   //where imported 
   //listItems=[[feel, press], [dew, cloud], [rise, set, uv], [precip, prob], [dir, gust]];
