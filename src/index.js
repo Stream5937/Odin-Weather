@@ -204,7 +204,7 @@ function setDaysDataArray(data){
     if(index < 7){
       //console.log(item);
       days[index] = item;
-      console.log(index);
+     // console.log(index);
       console.log(days[index]);
       //setDaysDataObj[index]];
     }
