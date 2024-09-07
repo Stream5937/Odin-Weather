@@ -410,19 +410,6 @@ ul li#uv {
   margin : 3%;
 }
 
-/*ul li#feel,
-ul li#press, 
-ul li#dew,
-ul li#cloud,
-ul li#dir,
-ul li#gust,
-ul li#prob,
-ul li#precip {
-  height: 90%;
-  width: 90%;
-  margin: 3%;
-}  */
-
 /* ------------------------------------varied display icon / data zone -------------------------------*/
 .varies {
   display: grid;
@@ -439,7 +426,7 @@ ul li#precip {
 .icon-image {
   display:grid;
   grid-area: 1/1/2/2;
-/*  background-color: lightyellow; */
+  background-color: lightblue;
   justify-self: center;
   height: 80%;
   width: 80%;
@@ -448,23 +435,111 @@ ul li#precip {
 .popup {
   display:grid;
   grid-area: 1/1/2/2;
-  background-color: var(--col_2);
-  justify-self: center;
-  height: 80%;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;           
+  grid-template-columns: 1fr;
+  /*background-color: lightyellow;*/
+  height: 90%;
   width: 100%;
   border-color: #000088;
   border-width: 2px;
   border-style: solid;
   border-radius: 5px;
+  color: var(--col_td);
+  font-size: 1.0rem;
+  font-weight: 300;
 }
 
-.vertTranslate {
-  -webkit-transition: 15s;
-  -moz-transition: 15s;
-  -ms-transition: 15s;
-  -o-transition: 15s;
-  transition: 15s;
-  margin-bottom: 50% !important;
+/*first column data*/
+#p1 {
+  display:grid;
+  grid-area: 1/1/2/2;
+  grid-template-columns: 1fr 5fr;
+  /*background-color: lightyellow;*/
+}
+#p2 {
+  display:grid;
+  grid-area: 2/1/3/2;
+  grid-template-columns: 1fr 5fr;
+ /*background-color: lightyellow;*/
+}
+
+#p3 {
+  display:grid;
+  grid-area: 3/1/4/2;
+  grid-template-columns: 1fr 5fr;
+ /*background-color: lightyellow;*/
+}
+#p4 {
+  display:grid;
+  grid-area: 4/1/5/2;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  /*background-color: lightyellow;*/
+}
+#p5 {
+  display:grid;
+  grid-area: 5/1/6/2;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  /*background-color: lightyellow;*/
+}
+#p6 {
+  display:grid;
+  grid-area: 6/1/7/2;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  /*background-color: lightyellow;*/
+}
+  
+
+/*second column data */
+#p1>span.d_datetime {
+  display:grid;
+  grid-area: 1/2/2/6;
+}  
+#p2>span.d_conditions {
+  display:grid;
+  grid-area: 1/2/2/6;
+}  
+#p3>span.d_description {
+  display:grid;
+  grid-area: 1/2/2/6;
+} 
+#p4>span.d_temp {
+  display:grid;
+  grid-area: 1/2/2/3;
+}
+#p4>span.d_tempmax {
+  display:grid;
+  grid-area: 1/4/2/5;
+}
+#p4>span.d_tempmin {
+  display:grid;
+  grid-area: 1/6/2/7;
+}
+#p5>span.d_humidity {
+  display:grid;
+  grid-area: 1/2/2/3;
+}
+#p5>span.d_cloudcover {
+  display:grid;
+  grid-area: 1/4/2/5;
+}
+#p5>span.d_uvindex {
+  display:grid;
+  grid-area: 1/6/2/7;
+}
+#p6>span.d_windspeed {
+  display:grid;
+  grid-area: 1/2/2/3;
+}
+#p6>span.d_winddir {
+  display:grid;
+  grid-area: 1/4/2/5;
+}
+#p6>span.d_windgusts {
+  display:grid;
+  grid-area: 1/6/2/7;
 }
 
 .pop {

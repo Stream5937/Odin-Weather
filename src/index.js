@@ -22,7 +22,7 @@ const prefix_main = [
   "",
   'Current conditions: '
 ]
-const days =[{},{},{},{},{},{},{}];
+export const days =[{},{},{},{},{},{},{},{}];
 
 //console.log('at ./index.js');
 //console.log('locale' + dataBlocks[0]);
@@ -135,7 +135,7 @@ function setDisplayDataObj (data) {
   //humidity
   siteDataObj.humidity = data.currentConditions.humidity;
   //icon
-  siteDataObj.icon = data.currentConditions.icon;
+  siteDataObj.icon = ""; //data.currentConditions.icon;
   //precipitation
   siteDataObj.precipitation=data.currentConditions.precip;
   //wind
@@ -201,7 +201,7 @@ function setDaysDataArray(data){
   //console.log(`nextDays  ${nextDays}`);
   nextDays.forEach((item, index, array) => {
     console.log(index);
-    if(index < 7){
+    if(index < 8){
       //console.log(item);
       days[index] = item;
      // console.log(index);
