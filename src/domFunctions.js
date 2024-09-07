@@ -62,7 +62,6 @@ const pup_wind = $('#p6>span.d_windspeed');
 const pup_dir = $('#p6>span.d_winddir');
 const pup_gust = $('#p6>span.d_windgusts');
 
-
 export const conditions = $('.conditions');
 
 //an array of button listeners
@@ -89,62 +88,28 @@ export function setZoneListener (zone) {
         console.log(event.target); 
         if(event.target.classList.contains('pop1')) {
            actionPopUp(event.target, '1');
-          // displayDataDay(1);
         }
         if(event.target.classList.contains('pop2')) {
             actionPopUp(event.target, '2');
-           // displayDataDay(2);
          }
          if(event.target.classList.contains('pop3')) {
             actionPopUp(event.target, '3');
-            //displayDataDay(3);
          }
          if(event.target.classList.contains('pop4')) {
             actionPopUp(event.target, '4');
-           // displayDataDay(4);
          }
          if(event.target.classList.contains('pop5')) {
             actionPopUp(event.target, '5');
-           // displayDataDay(5);
          }
          if(event.target.classList.contains('pop6')) {
             actionPopUp(event.target, '6');
-            //displayDataDay(6);
          }
          if(event.target.classList.contains('pop7')) {
             actionPopUp(event.target, '7');
-           // displayDataDay(7);
          }
     }
 }
-
 //listeners.forEach((item) => { setZoneListener(item); });
-
-
-//transition of popups
-/*
-var boxOne = document.querySelector('popup');
-
-export function actionPopUp () {
-    console.log('at action popup');
-    document.getElementsByClassName('pop1').onclick = function() {
-        console.log('at  pop1 click');
-        if(this.innerHTML === '1') 
-        { 
-            console.log('at is 1');
-            this.innerHTML = 'close';
-            boxOne.classList.add('vertTranslate');
-        } else {
-            console.log('at else');
-            this.innerHTML = '1';
-            var computedStyle = window.getComputedStyle(boxOne),
-                marginBottom = computedStyle.getPropertyValue('margin-bottom');
-            boxOne.style.marginBottom = marginBottom;
-            boxOne.classList.remove('vertTranslate');    
-        }  
-    }
-}
-*/
 
 function actionPopUp ( target, val) {
     var boxOne = document.querySelector('.popup');
@@ -163,34 +128,14 @@ function actionPopUp ( target, val) {
     setPopUpData(boxOne, val);
 }
 
-/*
-           if(event.target.innerHTML === '1') 
-            { 
-                console.log('at is 1');
-                event.target.innerHTML = 'close';
-                boxOne.classList.remove('hidden');
-               // boxOne.classList.add('vertTranslate');
-            } else {
-                console.log('at else');
-                event.target.innerHTML = '1';
-               */ /*
-                var computedStyle = window.getComputedStyle(boxOne),
-                    marginBottom = computedStyle.getPropertyValue('margin-bottom');
-                    
-                boxOne.style.marginBottom = marginBottom;
-                */ /*
-              //  boxOne.classList.remove('vertTranslate'); 
-                boxOne.classList.add('hidden');   
-            } 
-*/
-
 function setPopUpData(target, val) {
     //console.log(`days[val] : ${days[val].datetime}`);
     //console.log(pup_date);
-    
+    /**/
     pup_date.textContent= `${days[val].datetime}`;   
     pup_cond.textContent= `${days[val].conditions}`;
     pup_desc.textContent= `${days[val].description}`;
+    
     pup_temp.textContent= `${days[val].temp}`;
     pup_tempmax.textContent= `${days[val].tempmax}`;
     pup_tempmin.textContent= `${days[val].tempmin}`;
@@ -200,20 +145,5 @@ function setPopUpData(target, val) {
     pup_wind.textContent= `${days[val].windspeed}`;
     pup_dir.textContent= `${days[val].winddir}`;
     pup_gust.textContent= `${days[val].windgust}`;
+    /**/
 }
-
-/*
-const pup_date = $('span.datetime');
-const pup_cond = $('span.conditions');
-const pup_desc = $('span.description');
-const pup_temp = $('span.temp');
-const pup_tempmax = $('span.tempmax');
-const pup_tempmin = $('span.tempmin');
-const pup_humidity = $('span.humidity');
-const pup_cloud = $('span.cloudcover');
-const pup_uv = $('span.uvindex');
-
-const pup_wind = $('span.windspeed');
-const pup_dir = $('span.winddir');
-const pup_gust = $('span.windgusts');
-*/

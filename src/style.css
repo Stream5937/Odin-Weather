@@ -1,4 +1,4 @@
-/*weatherforcast*/
+/*weather forecast*/
 /*----------------------------------------reset-------------------------------------------------------------*/
 
 *{
@@ -7,9 +7,6 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     box-sizing: border-box;
-   /* display:grid;   //causes display issue!!
-   /* justify-content: center;
-    align-items: center; */
 }
 
 /*--------------------------------colour scheme  1 lighter to 4 darker ------------------------------------*/
@@ -60,7 +57,6 @@ h1 {
 
 h2 {
   font-size: 1.5rem;
-  /*color: var(--col_tm);*/
   align-content: center;
   padding: 0 5px 0 5px;
 }
@@ -76,16 +72,12 @@ h2 span {
 /*------------------------------------container----------------------------------------------*/
 
 .container {
- /* display:grid;
-  justify-content: center;
-  align-items: center; */
   height:100vh;
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   grid-template-rows: 1fr 10fr 1fr;
   color: var(--col_td);
-  /*background-color: var(--col_2);*/
 }
 
 .left-sidebar {
@@ -160,11 +152,10 @@ input {
   grid-template-rows: 1fr;
   justify-content: space-around;
   align-items: center;
- /* background-color: lightslategray; */
   height: 100%;
   width: 100%;
 }
-/*--------------*/
+
 .temperature_minor,
 .temperature {
   display:grid;
@@ -175,10 +166,8 @@ input {
   border-color: #000088;
   border-width: 2px;
   border-style: solid;
-  
   border-radius: 10px;
 }
-
 
 .humidity_minor,
 .humidity {
@@ -192,6 +181,7 @@ input {
   border-style: solid;
   border-radius: 10px;
 }
+
 span.humidity,
 span.data {
   background-color: var(--col_2);
@@ -258,7 +248,6 @@ span.top {
   grid-area: 1/1/2/2;
   justify-content: center;
   align-items: center;
-  /*background-color:chartreuse;*/
   font-size: 1.2rem;
 }
 
@@ -267,9 +256,7 @@ span.main {
   grid-area: 2/1/3/2;
   justify-content: center;
   align-content: center;
- /* background-color:antiquewhite;*/
   font-size: 3rem;
-  
 }
 
 /*---------------------------------------local conditions zone----------------------------------------*/
@@ -293,7 +280,6 @@ span.main {
   grid-template-rows: 1fr;
   justify-content: space-around;
   align-items: center;
- /* background-color: lightslategray;*/
   height: 100%;
   width: 100%;
 }
@@ -340,7 +326,6 @@ ul li#rise,
 ul li#dew,
 ul li#feel{
   grid-area: 1/1/2/2;
- /* background-color: var(--col_3); */
   margin : 3%;
 }
 
@@ -353,7 +338,6 @@ ul li#feel2 {
   justify-content: center;
   align-items: center;
   grid-area: 1/2/2/3;
- /* background-color: var(--col_3); */
   color: var(--col_td);
   font-size: 1.5rem;
   font-weight: 600;
@@ -369,7 +353,6 @@ ul li#press2 {
   justify-content: center;
   align-items: center;
   grid-area: 2/2/3/3;
- /* background-color: var(--col_3); */
   color: var(--col_td);
   font-size: 1.5rem;
   font-weight: 600;
@@ -381,7 +364,6 @@ ul li#uv2 {
   justify-content: center;
   align-items: center;
   grid-area: 3/2/4/3;
- /* background-color: var(--col_3); */
   color: var(--col_td);
   font-size: 1.5rem;
   font-weight: 600;
@@ -390,11 +372,9 @@ ul li#uv2 {
 
 ul li#press,
 ul li#gust,
-/*ul li#prob, */
 ul li#set,
 ul li#cloud {
   grid-area: 2/1/3/2;
- /* background-color: var(--col_2); */
   margin : 3%;
 }
 
@@ -406,7 +386,6 @@ ul li#prob {
 
 ul li#uv {
   grid-area: 3/1/4/2;
- /* background-color: var(--col_3); */
   margin : 3%;
 }
 
@@ -420,7 +399,6 @@ ul li#uv {
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: var(--col_icon);
 }
 
 .icon-image {
@@ -437,7 +415,6 @@ ul li#uv {
   grid-area: 1/1/2/2;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;           
   grid-template-columns: 1fr;
-  /*background-color: lightyellow;*/
   height: 90%;
   width: 100%;
   border-color: #000088;
@@ -447,51 +424,51 @@ ul li#uv {
   color: var(--col_td);
   font-size: 1.0rem;
   font-weight: 300;
+  background-color: aliceblue;
 }
 
 /*first column data*/
 #p1 {
   display:grid;
   grid-area: 1/1/2/2;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
-  /*background-color: lightyellow;*/
 }
 #p2 {
   display:grid;
   grid-area: 2/1/3/2;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
- /*background-color: lightyellow;*/
 }
 
 #p3 {
   display:grid;
   grid-area: 3/1/4/2;
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
- /*background-color: lightyellow;*/
+  height: 100%;
 }
 #p4 {
   display:grid;
   grid-area: 4/1/5/2;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  /*background-color: lightyellow;*/
+  height:100%;
 }
 #p5 {
   display:grid;
   grid-area: 5/1/6/2;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  /*background-color: lightyellow;*/
+  height: 100%;
 }
 #p6 {
   display:grid;
   grid-area: 6/1/7/2;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  /*background-color: lightyellow;*/
 }
   
-
 /*second column data */
 #p1>span.d_datetime {
   display:grid;
@@ -518,15 +495,15 @@ ul li#uv {
   grid-area: 1/6/2/7;
 }
 #p5>span.d_humidity {
-  display:grid;
+  /*display:grid;*/
   grid-area: 1/2/2/3;
 }
 #p5>span.d_cloudcover {
-  display:grid;
+  /*display:grid;*/
   grid-area: 1/4/2/5;
 }
 #p5>span.d_uvindex {
-  display:grid;
+  /*display:grid;*/
   grid-area: 1/6/2/7;
 }
 #p6>span.d_windspeed {
@@ -563,7 +540,6 @@ ul li#uv {
   grid-area: 3/2/4/3;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
- /* background-color: lightblue; */
   justify-content:space-evenly;
   gap: 1%;
   height: 100%;

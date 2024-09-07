@@ -4,15 +4,6 @@ import {listItems, conditions, actionPopUp, popupData} from './domFunctions.js';
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
-/*const prefix_main = [
-  "Forecast for: ",
-  "Temperature ",
-  "humidity ", 
-  "icon ",
-  "precipitation ",
-  "wind ",
-  'Current conditions: '
-] */
 const prefix_main = [
   "Forecast for: ",
   "",
@@ -22,7 +13,7 @@ const prefix_main = [
   "",
   'Current conditions: '
 ]
-export const days =[{},{},{},{},{},{},{},{}];
+export const days =[{},{},{},{},{},{},{},{}];   //data objects to cover next 7 days
 
 //console.log('at ./index.js');
 //console.log('locale' + dataBlocks[0]);
@@ -89,7 +80,6 @@ function getData (query) {
       .then(function(response) {
         dateFinish = new Date();    //for end time of fetch operation
         return response.json();
-        //return response;
      })
      .then(function(response){
          if(response.data !== {}){
@@ -206,7 +196,6 @@ function setDaysDataArray(data){
       days[index] = item;
      // console.log(index);
       console.log(days[index]);
-      //setDaysDataObj[index]];
     }
   });
 }
