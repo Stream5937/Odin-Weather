@@ -1,5 +1,5 @@
 //import {siteDataObj} from './index.js'
-import {days} from './index.js';
+import {days, lastQuery, getData} from './index.js';
 
 const $ = selector => {  
     console.log(`actioning ${selector}`);                          //code short cut
@@ -8,6 +8,8 @@ const $ = selector => {
 
 //buttons
 const deg = $('.deg-btn');
+const hF  = $('h2.F');
+const hC  = $('h2.C');
 const day1 = $('.pop1');
 const day2 = $('.pop2');
 const day3 = $('.pop3');
@@ -63,6 +65,7 @@ const pup_dir = $('#p6>span.d_winddir');
 const pup_gust = $('#p6>span.d_windgusts');
 
 export const conditions = $('.conditions');
+export let units = 'uk';  // default = deg C : reset in setZoneListener() by 'deg F' / 'deg C' button
 
 //an array of button listeners
 export const listeners = [deg,day1,day2,day3,day4,day5,day6,day7];
@@ -86,6 +89,22 @@ export function setZoneListener (zone) {
     zone.onclick = event => {
         //console.log('clicked');
         console.log(event.target); 
+        if( event.target.classList.contains('deg-btn') ||
+            event.target.classList.contains('F') || 
+            event.target.classList.contains('C')  ) {
+            if(units === 'us') {
+                units = 'uk';
+                hC.classList.add('hidden');
+                hF.classList.remove('hidden');
+            } else {
+                units = 'us';
+                hF.classList.add('hidden');
+                hC.classList.remove('hidden');
+            }
+            //window.location.reload(window.location.pathname + window.location.search + window.location.hash);
+            getData(lastQuery);
+            return false;
+         }
         if(event.target.classList.contains('pop1')) {
            actionPopUp(event.target, '1');
         }

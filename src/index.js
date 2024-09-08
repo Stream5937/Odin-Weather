@@ -1,6 +1,6 @@
 import "./style.css";
 import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
-import {listItems, conditions, actionPopUp, popupData} from './domFunctions.js';
+import {listItems, conditions, actionPopUp, popupData , units} from './domFunctions.js';
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
@@ -18,9 +18,17 @@ export const days =[{},{},{},{},{},{},{},{}];   //data objects to cover next 7 d
 //console.log('at ./index.js');
 //console.log('locale' + dataBlocks[0]);
 //console.log('at ./index.js');
-let lastQuery = 'Nailsea';   // a default value
+export let lastQuery = 'Nailsea';   // a default value
 let siteDataObj= {};
 let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
+
+//const US = 'unitGroup=us';    //retrieve data using US units deg F and miles  - default
+//const UK = 'unitGroup=uk';    //retrieve data using UK units deg C and miles
+//const units= [US,UK];
+//let unitGroup = units[0];   //initial default
+/* not implemented for this exercise
+let ME = 'unitGroup=metric' //retrieve data using metric units deg C and kilometers  
+*/
 
 listeners.forEach((item) => {
   setZoneListener(item);
@@ -58,9 +66,12 @@ function handleSearchPosts(query){
 
     NB the use of {mode : 'cors'} used to fix issues in the context of
         Cross Origin Resource Sharing (CORS)
+
+    example query  for New York including unit group -> here 'unitGroup=us' but could be metric or uk
+    https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/New%20York%20City%2CNY?unitGroup=us&key=YOUR_API_KEY
 */
 
-function getData (query) {
+export function getData (query) {
     console.log(`at getData: ${query}`);
     lastQuery = query;
     let noData = false;
@@ -72,11 +83,35 @@ function getData (query) {
     let t_finish = null;        //record finish of fetch action
     //let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
     //t_taken now global
+    let fetchString = ``;
 
+/*
     fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?key=SHSBBCG24LZCJNG5DWNL5ZFP2`, 
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=uk&key=SHSBBCG24LZCJNG5DWNL5ZFP2`, 
       {mode: 'cors'}
     )
+*/
+
+    switch (units) {
+      case 'us': {
+        fetchString =
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=us&key=SHSBBCG24LZCJNG5DWNL5ZFP2`; 
+        break;
+      }
+
+      default:
+      case 'uk': {
+        fetchString = 
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=uk&key=SHSBBCG24LZCJNG5DWNL5ZFP2`;
+        break;
+      }
+    }
+    //console.log('fs: ' + fetchString);
+
+    fetch(
+      fetchString, {mode: 'cors'}
+    )
+
       .then(function(response) {
         dateFinish = new Date();    //for end time of fetch operation
         return response.json();
