@@ -1,6 +1,7 @@
 import "./style.css";
 import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
 import {listItems, conditions, actionPopUp, popupData , units} from './domFunctions.js';
+import {image1_component} from './icon.js';
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
@@ -161,6 +162,7 @@ function setDisplayDataObj (data) {
   siteDataObj.humidity = data.currentConditions.humidity;
   //icon
   siteDataObj.icon = ""; //data.currentConditions.icon;
+
   //precipitation
   siteDataObj.precipitation=data.currentConditions.precip;
   //wind
@@ -194,6 +196,10 @@ function setDisplayDataObj (data) {
       item.textContent = prefix_main[index] + siteDataObj[value] + ` (in ${t_taken} ms)`;} 
     else {
       item.textContent= prefix_main[index] + siteDataObj[value];
+    }
+    //add the icon image
+    if(index === 3){
+      item.appendChild(image1_component());
     }
   });
 

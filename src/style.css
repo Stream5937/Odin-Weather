@@ -407,8 +407,8 @@ ul li#uv {
   grid-area: 1/1/2/2;
   background-color: lightblue;
   justify-self: center;
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 100%;
 }
 
 .popup {
