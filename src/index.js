@@ -1,7 +1,9 @@
 import "./style.css";
-import {listeners, setZoneListener, dataBlocks} from './domFunctions.js';
+import {listeners, setZoneListener, dataBlocks, variesIcon} from './domFunctions.js';
 import {listItems, conditions, actionPopUp, popupData , units} from './domFunctions.js';
-import {image1_component} from './icon.js';
+import {image1_component, image2_component} from './icon.js';
+//has to be global scope
+let actionedOnce = false;     // logic to avoid re-adding weather Icon images to varies zone on page reload
 
 //an array of dataItem names to correspond with the dataBlock display locations
 const dataNames = ['location', 'temperature', 'humidity', 'icon', 'precipitation', 'wind', 'currentConditions'];
@@ -204,6 +206,16 @@ function setDisplayDataObj (data) {
   });
 
   conditions.textContent = 'Current conditions: ' + siteDataObj.currentConditions;
+
+  console.log('actionedOnce' + actionedOnce);
+  if(!actionedOnce){
+     //where imported -> variesIcon -> being the location of variable weather ion images
+    variesIcon.appendChild(image2_component());
+    variesIcon.appendChild(image2_component());
+    variesIcon.appendChild(image2_component());
+    actionedOnce = true;
+  }
+  console.log('actionedOnce' + actionedOnce);
 
   //where imported 
   //listItems=[[feel, press], [dew, cloud], [rise, set, uv], [precip, prob], [dir, gust]];

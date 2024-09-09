@@ -38,7 +38,7 @@ const prob = $('#prob2');
 const dir = $('#dir2');
 const gust = $('#gust2');
 //for display of icon in varies zone
-const variesIcon = $('.icon-image');
+export const variesIcon = $('.icon-image');
 //popups
 //paragraphs
 const P1 = $('#p1');
@@ -141,12 +141,12 @@ function actionPopUp ( target, val) {
         console.log('at '+ val);
         target.innerHTML = 'close';
         boxOne.classList.remove('hidden');
-        variesImage.classList.add('hidden');
+        variesIcon.classList.add('hidden');
     } else {
         console.log('at else');
         target.innerHTML = val;
         boxOne.classList.add('hidden'); 
-        variesImage.classList.remove('hidden');   
+        variesIcon.classList.remove('hidden');   
     }  
     setPopUpData(boxOne, val);
 }

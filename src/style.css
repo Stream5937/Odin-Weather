@@ -405,10 +405,20 @@ ul li#uv {
 .icon-image {
   display:grid;
   grid-area: 1/1/2/2;
+  grid-template-rows : 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: lightblue;
   justify-self: center;
+  justify-content:space-evenly;
+  align-items: center;
   height: 90%;
   width: 100%;
+}
+
+.icon-image>li {
+  height: 100%;
+  width : 100%;
+  background-color: lightyellow ;
 }
 
 .popup {
