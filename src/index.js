@@ -26,9 +26,6 @@ const prefix_main = [
 ]
 export const days =[{},{},{},{},{},{},{},{}];   //data objects to cover next 7 days
 
-//console.log('at ./index.js');
-//console.log('locale' + dataBlocks[0]);
-//console.log('at ./index.js');
 export let lastQuery = 'Nailsea';   // a default value
 let siteDataObj= {};
 let t_taken = null ;        //to calculate timing of fetch operation in milliseconds
@@ -63,7 +60,6 @@ search.addEventListener(
 );
 
 function handleSearchPosts(query){
-   // console.log(`${query}`);
     lastQuery = query;
     getData(query);
 }
@@ -87,7 +83,6 @@ export function getData (query) {
     lastQuery = query;
     let noData = false;
     let dataResult = null;
-   // console.log(`lastQuery: ${lastQuery}`);
     const dateStart = new Date();         //to get start time
     const t_start = dateStart.getTime();  //record start of fetch action
     let dateFinish = null;      //to get finish time
@@ -117,7 +112,6 @@ export function getData (query) {
         break;
       }
     }
-    //console.log('fs: ' + fetchString);
 
     fetch(
       fetchString, {mode: 'cors'}
@@ -129,10 +123,7 @@ export function getData (query) {
      })
      .then(function(response){
          if(response.data !== {}){
-          console.log('body data present');
-        //  console.log(response);
-        //  console.log(response.currentConditions);
-
+         // console.log('body data present');
           t_finish = dateFinish.getTime();  //record end time of fetch operation -success
           return(response);
         }
@@ -144,7 +135,6 @@ export function getData (query) {
      })
      .then(function(response){
           t_taken = t_finish - t_start;   //duration of fetch operation in milliseconds
-         // console.log(`fetch data took ${t_taken} milliseconds`);
           setDisplayDataObj(response);
           return(response);
      })
@@ -161,10 +151,8 @@ function setDisplayDataObj (data) {
   console.log(`data : ${data}`);
   //location
   siteDataObj.location= data.resolvedAddress;
-  //console.log(siteDataObj.location);
   //date
   const dateNow = new Date();
- // console.log(dateNow);
   //Main-stats
   //temperature
   siteDataObj.temperature = data.currentConditions.temp;
@@ -196,7 +184,6 @@ function setDisplayDataObj (data) {
   siteDataObj.gust  = data.currentConditions.windgust;
   siteDataObj.uv  = data.currentConditions.uvindex;
   
- // console.log(siteDataObj);
   let value;
 
   dataBlocks.forEach((item, index) => {
@@ -215,119 +202,33 @@ function setDisplayDataObj (data) {
         //do nothing
       }else{
         item.appendChild(imageComponents[iconIndex]);
-        //item.appendChild(image1_component());
       }
     }
   });
 
   conditions.textContent = 'Current conditions: ' + siteDataObj.currentConditions;
 
-  console.log('actionedOnce' + actionedOnce);
-//  if(!actionedOnce){
+  let iconIndex = ((getIconIndex()*2) +1);
 
-     //where imported -> variesIcon -> being the location of variable weather ion images
-    //const imageToUse = imageComponents[5];
-   /* console.log(imageComponents[0]);
-    console.log(imageComponents[1]);
-    console.log(imageToUse);
-    console.log(imageComponents[2]); */
-    
-    /* ############# nb this provides three but different images ok ---
-    variesIcon.appendChild(imageComponents[1]);
-   // variesIcon.appendChild(image4_component());
-    variesIcon.appendChild(imageComponents[3]);
-   // variesIcon.appendChild(image2_component());
-    variesIcon.appendChild(imageComponents[5]);
-   // variesIcon.appendChild(image2_component());
-    */
+  //remove image if exists
+  const child = document.getElementById("imageIconListItem");
+  if(child) {
+    console.log(variesIcon);
+    const parent = variesIcon;
+    console.log(parent);
+    console.log(child);
+    const throwawayNode = parent.removeChild(child);
+    console.log(throwawayNode);
+  } 
 
-    /* ######### serves only one image -----------------
-    const imageToUse = imageComponents[5];
-    variesIcon.appendChild(imageToUse);
-    variesIcon.appendChild(imageToUse);
-    variesIcon.appendChild(imageToUse);
-    */
-   
-    /* ############# serves three but different images
-    let imageToUse = imageComponents[5];
-    variesIcon.appendChild(imageToUse);
-    imageToUse = imageComponents[3];
-    variesIcon.appendChild(imageToUse);
-    imageToUse = imageComponents[1];
-    variesIcon.appendChild(imageToUse);
-    */
-
-    /*
-    variesIcon.appendChild(imageComponents[1]);
-    variesIcon.appendChild(imageComponents[1]);
-    variesIcon.appendChild(imageComponents[1]);
-    */
-    console.log(`responseIconVal = ${responseIconVal}`);
-
-    let iconIndex = ((getIconIndex()*2) +1);
-    console.log('-1-iconIndex: ' + iconIndex);
-    if(iconIndex < 0){
-      //do nothing
-    }else{
-
-      /*
-        if (list.hasChildNodes()) {
-          list.removeChild(list.children[0]);
-}
-      */
-      const child = document.getElementById("imageIconListItem");
-      if(child) {
-
-        console.log(variesIcon);
-        const parent = variesIcon;
-        console.log(parent);
-        console.log(child);
-        const throwawayNode = parent.removeChild(child);
-        console.log(throwawayNode);
-        
-      } 
-        
-        
-        
-
-
-
-        //console.log(variesIcon.firstElementChild);
-
-        /*
-        const node = document.getElementById("child");
-        if (node.parentNode) {
-           node.parentNode.removeChild(node);
-        }
-        */ //element.id="imageIconListItem";
-        /*
-       const node = document.getElementById('imageIconListItem');
-       const parent = node.parentNode;
-       console.log(node);
-       console.log(parent);
-       console.log(variesIcon);
-       */
-       /*
-       if (node.parentNode) {
-        node.parentNode.removeChild(node);
-       }
-        */
-        //variesIcon.removeChild(variesIcon.removeChild(variesIcon.firstElementChild));
-    //  }
-
-      variesIcon.appendChild(imageComponents[iconIndex]);
-    }
-    actionedOnce = true;
-
- // }
-
-  console.log('actionedOnce' + actionedOnce);
+  if(iconIndex < 0){
+    //do nothing
+  }else{
+    variesIcon.appendChild(imageComponents[iconIndex]);
+  }
 
   //where imported 
   //listItems=[[feel, press], [dew, cloud], [rise, set, uv], [precip, prob], [dir, gust]];
-
-  //console.log(listItems[0][0]);
-  //console.log(listItems[0][1]);
 
   listItems[0][0].textContent = siteDataObj.feelsLike;
   listItems[0][1].textContent = siteDataObj.airPressure;
@@ -345,15 +246,11 @@ function setDisplayDataObj (data) {
 
 
 function setDaysDataArray(data){
- // console.log(`data: ${data}`);
   const nextDays = data.days;
-  //console.log(`nextDays  ${nextDays}`);
   nextDays.forEach((item, index, array) => {
     console.log(index);
     if(index < 8){
-      //console.log(item);
       days[index] = item;
-     // console.log(index);
       console.log(days[index]);
     }
   });
@@ -363,26 +260,22 @@ function getIconIndex() {
   let val = -1;
   let iconArray = ['sun', 'snow', 'rain', 'fog', 'cloud'];
   iconArray.forEach((item, index) => {
-   // let decided = false;
-  
-   console.log(`responseIconVal: ${responseIconVal}`);
-   console.log(`item: ${item}`);
-   
-        if(responseIconVal.includes(item)) {
-            val = index;
-            //decided = true;
-            //console.log(`index to return = (${val})`);
-            //return (val);   // ????? not returning here ?????
-        }else{
-          if(responseIconVal.includes('clear-day')){
-            //return 0;  //sunny   not returning here
-            val = 0;
-          }
-        }
+    /*
+      console.log(`responseIconVal: ${responseIconVal}`);
+      console.log(`item: ${item}`);
+    */ 
+    if(responseIconVal.includes(item)) {
+        val = index;
+        //return (val);   // ????? not returning here ?????
+    }else{
+      if(responseIconVal.includes('clear-day')){
+        //return 0;  //sunny   not returning here
+        val = 0;
+    }
+  }
 
   });
   //at least a default
-  
   if(val > -1){
     console.log(`index to return = (${val})`);
     return val;

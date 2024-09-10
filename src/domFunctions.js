@@ -1,4 +1,3 @@
-//import {siteDataObj} from './index.js'
 import {days, lastQuery, getData} from './index.js';
 
 const $ = selector => {  
@@ -103,7 +102,6 @@ export function setZoneListener (zone) {
                 hF.classList.add('hidden');
                 hC.classList.remove('hidden');
             }
-            //window.location.reload(window.location.pathname + window.location.search + window.location.hash);
             getData(lastQuery);
             return false;
          }
@@ -152,9 +150,7 @@ function actionPopUp ( target, val) {
 }
 
 function setPopUpData(target, val) {
-    //console.log(`days[val] : ${days[val].datetime}`);
-    //console.log(pup_date);
-    /**/
+    
     pup_date.textContent= `${days[val].datetime}`;   
     pup_cond.textContent= `${days[val].conditions}`;
     pup_desc.textContent= `${days[val].description}`;
@@ -168,5 +164,5 @@ function setPopUpData(target, val) {
     pup_wind.textContent= `${days[val].windspeed}`;
     pup_dir.textContent= `${days[val].winddir}`;
     pup_gust.textContent= `${days[val].windgust}`;
-    /**/
+    
 }
