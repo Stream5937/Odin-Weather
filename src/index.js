@@ -2,6 +2,14 @@ import "./style.css";
 import {listeners, setZoneListener, dataBlocks, variesIcon} from './domFunctions.js';
 import {listItems, conditions, actionPopUp, popupData , units} from './domFunctions.js';
 import {image1_component, image2_component} from './icon.js';
+//import the array of image components
+import {imageComponents} from './icon.js';
+imageComponents.forEach((item, index) =>{
+  console.log(index,item);
+});
+//global value
+let responseIconVal = "";
+
 //has to be global scope
 let actionedOnce = false;     // logic to avoid re-adding weather Icon images to varies zone on page reload
 
@@ -164,7 +172,7 @@ function setDisplayDataObj (data) {
   siteDataObj.humidity = data.currentConditions.humidity;
   //icon
   siteDataObj.icon = ""; //data.currentConditions.icon;
-
+  responseIconVal = data.currentConditions.icon;
   //precipitation
   siteDataObj.precipitation=data.currentConditions.precip;
   //wind
@@ -201,20 +209,118 @@ function setDisplayDataObj (data) {
     }
     //add the icon image
     if(index === 3){
-      item.appendChild(image1_component());
+      let iconIndex = (getIconIndex() * 2);
+      console.log('-0-iconIndex: ' + iconIndex);
+      if(iconIndex < 0) {
+        //do nothing
+      }else{
+        item.appendChild(imageComponents[iconIndex]);
+        //item.appendChild(image1_component());
+      }
     }
   });
 
   conditions.textContent = 'Current conditions: ' + siteDataObj.currentConditions;
 
   console.log('actionedOnce' + actionedOnce);
-  if(!actionedOnce){
+//  if(!actionedOnce){
+
      //where imported -> variesIcon -> being the location of variable weather ion images
-    variesIcon.appendChild(image2_component());
-    variesIcon.appendChild(image2_component());
-    variesIcon.appendChild(image2_component());
+    //const imageToUse = imageComponents[5];
+   /* console.log(imageComponents[0]);
+    console.log(imageComponents[1]);
+    console.log(imageToUse);
+    console.log(imageComponents[2]); */
+    
+    /* ############# nb this provides three but different images ok ---
+    variesIcon.appendChild(imageComponents[1]);
+   // variesIcon.appendChild(image4_component());
+    variesIcon.appendChild(imageComponents[3]);
+   // variesIcon.appendChild(image2_component());
+    variesIcon.appendChild(imageComponents[5]);
+   // variesIcon.appendChild(image2_component());
+    */
+
+    /* ######### serves only one image -----------------
+    const imageToUse = imageComponents[5];
+    variesIcon.appendChild(imageToUse);
+    variesIcon.appendChild(imageToUse);
+    variesIcon.appendChild(imageToUse);
+    */
+   
+    /* ############# serves three but different images
+    let imageToUse = imageComponents[5];
+    variesIcon.appendChild(imageToUse);
+    imageToUse = imageComponents[3];
+    variesIcon.appendChild(imageToUse);
+    imageToUse = imageComponents[1];
+    variesIcon.appendChild(imageToUse);
+    */
+
+    /*
+    variesIcon.appendChild(imageComponents[1]);
+    variesIcon.appendChild(imageComponents[1]);
+    variesIcon.appendChild(imageComponents[1]);
+    */
+    console.log(`responseIconVal = ${responseIconVal}`);
+
+    let iconIndex = ((getIconIndex()*2) +1);
+    console.log('-1-iconIndex: ' + iconIndex);
+    if(iconIndex < 0){
+      //do nothing
+    }else{
+
+      /*
+        if (list.hasChildNodes()) {
+          list.removeChild(list.children[0]);
+}
+      */
+      const child = document.getElementById("imageIconListItem");
+      if(child) {
+
+        console.log(variesIcon);
+        const parent = variesIcon;
+        console.log(parent);
+        console.log(child);
+        const throwawayNode = parent.removeChild(child);
+        console.log(throwawayNode);
+        
+      } 
+        
+        
+        
+
+
+
+        //console.log(variesIcon.firstElementChild);
+
+        /*
+        const node = document.getElementById("child");
+        if (node.parentNode) {
+           node.parentNode.removeChild(node);
+        }
+        */ //element.id="imageIconListItem";
+        /*
+       const node = document.getElementById('imageIconListItem');
+       const parent = node.parentNode;
+       console.log(node);
+       console.log(parent);
+       console.log(variesIcon);
+       */
+       /*
+       if (node.parentNode) {
+        node.parentNode.removeChild(node);
+       }
+        */
+        //variesIcon.removeChild(variesIcon.removeChild(variesIcon.firstElementChild));
+    //  }
+
+      variesIcon.appendChild(imageComponents[iconIndex]);
+    }
     actionedOnce = true;
-  }
+
+ // }
+
   console.log('actionedOnce' + actionedOnce);
 
   //where imported 
@@ -253,4 +359,35 @@ function setDaysDataArray(data){
   });
 }
 
+function getIconIndex() {
+  let val = -1;
+  let iconArray = ['sun', 'snow', 'rain', 'fog', 'cloud'];
+  iconArray.forEach((item, index) => {
+   // let decided = false;
+  
+   console.log(`responseIconVal: ${responseIconVal}`);
+   console.log(`item: ${item}`);
+   
+        if(responseIconVal.includes(item)) {
+            val = index;
+            //decided = true;
+            //console.log(`index to return = (${val})`);
+            //return (val);   // ????? not returning here ?????
+        }else{
+          if(responseIconVal.includes('clear-day')){
+            //return 0;  //sunny   not returning here
+            val = 0;
+          }
+        }
 
+  });
+  //at least a default
+  
+  if(val > -1){
+    console.log(`index to return = (${val})`);
+    return val;
+  }else{
+    console.log('returning -1');
+    return -1;
+  }
+}

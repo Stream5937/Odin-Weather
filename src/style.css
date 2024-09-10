@@ -406,12 +406,12 @@ ul li#uv {
   display:grid;
   grid-area: 1/1/2/2;
   grid-template-rows : 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  background-color: lightblue;
+  grid-template-columns: 1fr ;
+ /* background-color: lightblue; */
   justify-self: center;
   justify-content:space-evenly;
   align-items: center;
-  height: 90%;
+  height: 100%;
   width: 100%;
 }
 
